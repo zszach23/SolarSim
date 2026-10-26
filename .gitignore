@@ -1,0 +1,6 @@
+# Build Directory
+build/
+
+# Extraneous Executable File Names
+a.out
+solar
