@@ -4,6 +4,8 @@
 // Utility class to handle uniform logging
 // ============================================================================
 
+#pragma once
+
 enum LogType
 {
     DEBUG,
