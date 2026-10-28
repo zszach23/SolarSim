@@ -26,6 +26,9 @@ Window::Window(int width, int height, const char* title)
         glfwTerminate();
         throw std::runtime_error("GLEW Initialization Failed");
     }
+
+    glViewport(0, 0, width, height);
+    glfwSetFramebufferSizeCallback(window, OnResize);
 }
 
 Window::~Window()
@@ -47,6 +50,11 @@ void Window::PollEvents()
 void Window::SwapBuffers()
 {
     glfwSwapBuffers(window);
+}
+
+void Window::ProcessInput()
+{
+    
 }
 
 void Window::InitWindow(int width, int height, const char* title)
@@ -71,4 +79,9 @@ void Window::DestroyWindow()
 {
     glfwDestroyWindow(window);
     window = nullptr;
+}
+
+void Window::OnResize(GLFWwindow* window, int newWidth, int newHeight)
+{
+    glViewport(0, 0, newWidth, newHeight);
 }

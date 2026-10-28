@@ -5,6 +5,7 @@
 // ============================================================================
 
 #include "Application.hpp"
+#include "../render/HelloTriangle.hpp"
 
 Application::Application(int windowWidth, int windowHeight, const char* windowTitle)
     : window(windowWidth, windowHeight, windowTitle)
@@ -19,9 +20,12 @@ Application::~Application()
 
 void Application::Run()
 {
+    HelloTriangle triangle;
+
     while (!window.ShouldClose())
     {
-        Render();
+        triangle.Draw();
+        window.ProcessInput();
         window.SwapBuffers();
         window.PollEvents();
     }

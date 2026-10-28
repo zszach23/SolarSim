@@ -23,7 +23,7 @@ add_executable(solar
     src/main.cpp
     src/core/Application.cpp
     src/core/Window.cpp
-
+    src/render/HelloTriangle.cpp
 )
 
 target_compile_options(solar PRIVATE -Wall -Wextra)

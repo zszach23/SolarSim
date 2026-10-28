@@ -20,6 +20,7 @@ public:
     bool ShouldClose();
     void PollEvents();
     void SwapBuffers();
+    void ProcessInput();
 
 private:
     GLFWwindow* window;
@@ -28,4 +29,5 @@ private:
     void InitWindow(int width, int height, const char* title);
     void DestroyWindow();
 
+    static void OnResize(GLFWwindow* window, int newWidth, int newHeight);
 };
