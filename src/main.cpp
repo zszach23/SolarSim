@@ -4,14 +4,18 @@
 
 #include "core/Application.hpp"
 #include "utils/Logger.hpp"
-#include <iostream>
+
 #include <stdexcept>
+
+#define INIT_WIDTH 640
+#define INIT_HEIGHT 480
+#define TITLE "Solar Sim"
 
 int main(void)
 {
     try
     {
-        Application app;
+        Application app(INIT_WIDTH, INIT_HEIGHT, TITLE);
         app.Run();
     }
     catch(const std::exception& e)

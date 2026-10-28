@@ -6,8 +6,8 @@
 
 #include "Application.hpp"
 
-Application::Application()
-    : window(640, 480, "Solar Sim")
+Application::Application(int windowWidth, int windowHeight, const char* windowTitle)
+    : window(windowWidth, windowHeight, windowTitle)
 {
     
 }
@@ -21,8 +21,14 @@ void Application::Run()
 {
     while (!window.ShouldClose())
     {
+        Render();
+        window.SwapBuffers();
         window.PollEvents();
-
-
     }
+}
+
+void Application::Render()
+{
+    glClearColor(0.0f, 0.0f, 0.0f, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
 }

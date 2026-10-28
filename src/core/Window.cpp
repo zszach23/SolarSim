@@ -11,12 +11,27 @@
 
 Window::Window(int width, int height, const char* title)
 {
+    glfwSetErrorCallback(Logger::LogGLFWError);
+
+    if (!glfwInit())
+    {
+        throw std::runtime_error("GLFW Init Failed");
+    }
+
     InitWindow(width, height, title);
+
+    glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK)
+    {
+        glfwTerminate();
+        throw std::runtime_error("GLEW Initialization Failed");
+    }
 }
 
 Window::~Window()
 {
     DestroyWindow();
+    glfwTerminate();
 }
 
 bool Window::ShouldClose()
@@ -29,12 +44,17 @@ void Window::PollEvents()
     glfwPollEvents();
 }
 
+void Window::SwapBuffers()
+{
+    glfwSwapBuffers(window);
+}
+
 void Window::InitWindow(int width, int height, const char* title)
 {
-    if (!glfwInit())
-    {
-        throw std::runtime_error("GLFW Init Failed");
-    }
+    // Configure OpenGL GLFW Window Options
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     Window::window = glfwCreateWindow(width, height, title, NULL, NULL);
 
@@ -51,6 +71,4 @@ void Window::DestroyWindow()
 {
     glfwDestroyWindow(window);
     window = nullptr;
-
-    glfwTerminate();
 }
