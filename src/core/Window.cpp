@@ -5,10 +5,11 @@
 // ============================================================================
 
 #include "Window.hpp"
-#include "../core/Logger.hpp"
+#include "../utils/Logger.hpp"
+
 #include <stdexcept>
 
-Window::Window(const AppContext&, int width, int height, const char* title)
+Window::Window(int width, int height, const char* title)
 {
     InitWindow(width, height, title);
 }
@@ -30,6 +31,11 @@ void Window::PollEvents()
 
 void Window::InitWindow(int width, int height, const char* title)
 {
+    if (!glfwInit())
+    {
+        throw std::runtime_error("GLFW Init Failed");
+    }
+
     Window::window = glfwCreateWindow(width, height, title, NULL, NULL);
 
     if (!window)
@@ -45,4 +51,6 @@ void Window::DestroyWindow()
 {
     glfwDestroyWindow(window);
     window = nullptr;
+
+    glfwTerminate();
 }

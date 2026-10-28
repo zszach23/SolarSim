@@ -15,15 +15,14 @@ find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 
 add_library(solar_core STATIC
-    src/core/Logger.cpp
+    src/utils/Logger.cpp
 )
-target_include_directories(solar_core PUBLIC src/core)
+target_include_directories(solar_core PUBLIC src/utils)
 
 add_executable(solar
     src/main.cpp
-    src/app/Application.cpp
-    src/app/AppContext.cpp
-    src/app/Window.cpp
+    src/core/Application.cpp
+    src/core/Window.cpp
 
 )
 

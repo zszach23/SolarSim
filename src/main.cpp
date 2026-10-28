@@ -2,8 +2,8 @@
 // main.cpp
 // ============================================================================
 
-#include "app/Application.hpp"
-#include "core/Logger.hpp"
+#include "core/Application.hpp"
+#include "utils/Logger.hpp"
 #include <iostream>
 #include <stdexcept>
 

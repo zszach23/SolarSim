@@ -7,21 +7,20 @@
 #pragma once
 
 #include <GLFW/glfw3.h>
-#include "AppContext.hpp"
 
 class Window
 {
 public:
 
-private:
-    GLFWwindow* window;
-
 public:
-    Window(const AppContext&, int width, int height, const char* title);
+    Window(int width, int height, const char* title);
     ~Window();
 
     bool ShouldClose();
     void PollEvents();
+
+private:
+    GLFWwindow* window;
 
 private:
     void InitWindow(int width, int height, const char* title);
