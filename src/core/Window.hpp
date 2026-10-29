@@ -14,12 +14,21 @@ class Window
 public:
 
 public:
+
     Window(int width, int height, const char* title);
     ~Window();
 
+    /// @brief Checks the GLFW Should Window Close Flag
+    /// @return Whether the Window should close
     bool ShouldClose();
+
+    /// @brief Polls IO events in queue
     void PollEvents();
+
+    /// @brief Swaps front and back buffers of window
     void SwapBuffers();
+
+    /// @brief Handles Input events
     void ProcessInput();
 
 private:

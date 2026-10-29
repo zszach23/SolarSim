@@ -20,12 +20,14 @@ HelloTriangle::HelloTriangle()
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    SetBuffer();
+    SetVertexData();
 }
 
 HelloTriangle::~HelloTriangle()
 {
-
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram);
 }
 
 void HelloTriangle::Draw()
@@ -35,19 +37,30 @@ void HelloTriangle::Draw()
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-void HelloTriangle::SetBuffer()
+void HelloTriangle::SetVertexData()
 {
-    glGenVertexArrays(1, &VAO);
+    // Generate a new vertex buffer with unique ID
     glGenBuffers(1, &VBO);
+    glGenVertexArrays(1, &VAO);
+
+    // Bind VBO to the GL_ARRAY_BUFFER target
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBindVertexArray(VAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // Copies Vertex Data into the currently bound buffer's memory
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+    // Each vertex has 3 float data points
+    // 0 is the attribution location (layout location = 0 in vertex shader)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+    // Enable location 0 in vertex shader so that it can receive data
     glEnableVertexAttribArray(0);
 
+    // Empties the buffer so that later code doesn't modify the VBO
+    // Data still in GPU memory
     glBindBuffer(GL_ARRAY_BUFFER, 0);
+
     glBindVertexArray(0);
 }
 

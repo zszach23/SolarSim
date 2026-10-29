@@ -24,15 +24,13 @@ void Application::Run()
 
     while (!window.ShouldClose())
     {
+
+        glClearColor(0.0f, 0.0f, 0.0f, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
         triangle.Draw();
         window.ProcessInput();
         window.SwapBuffers();
         window.PollEvents();
     }
-}
-
-void Application::Render()
-{
-    glClearColor(0.0f, 0.0f, 0.0f, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
 }

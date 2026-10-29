@@ -1,7 +1,7 @@
 // ============================================================================
 // Application.hpp
 //
-//
+// Defines the lifecycle for the application
 // ============================================================================
 
 #pragma once
@@ -18,8 +18,6 @@ public:
     ~Application();
 
     void Run();
-
-    void Render();
 
 private:
 
