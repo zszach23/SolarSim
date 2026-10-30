@@ -19,6 +19,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(GLEW REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
+find_package(glm REQUIRED)
 
 ###############################################################################
 # Util Library Compiled Separately
@@ -36,6 +37,7 @@ add_executable(solar
     src/core/Application.cpp
     src/core/Window.cpp
     src/render/HelloTriangle.cpp
+    src/render/HelloCircle.cpp
 )
 
 ###############################################################################
@@ -51,5 +53,6 @@ target_link_libraries(solar PRIVATE
     GLEW::GLEW
     glfw
     OpenGL::GL
+    glm::glm
     ${CMAKE_DL_LIBS}
 )
