@@ -38,6 +38,7 @@ add_executable(solar
     src/core/Window.cpp
     src/render/HelloTriangle.cpp
     src/render/HelloCircle.cpp
+    src/render/HelloSphere.cpp
 )
 
 ###############################################################################

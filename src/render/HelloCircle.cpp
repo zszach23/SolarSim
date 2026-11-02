@@ -8,6 +8,7 @@
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/constants.hpp>
 
 HelloCircle::HelloCircle()
     : segments(100)
@@ -44,7 +45,7 @@ void HelloCircle::GenerateVertices()
 
     for (int i = 0; i <= segments; i++)
     {
-        float theta = 2 * M_PI * i / segments;
+        float theta = 2 * glm::pi<float>() * i / segments;
         vertices.push_back(radius * glm::cos(theta));
         vertices.push_back(radius * glm::sin(theta));
     }
